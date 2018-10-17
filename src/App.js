@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { Container } from "reactstrap";
 import Personal from "./Personal";
 import Location from "./Location";
+import Confirmation from "./Confirmation";
+import Success from "./Success";
 
 class App extends Component {
    state = {
@@ -36,36 +39,43 @@ class App extends Component {
       switch (step) {
          case 1:
             return (
-               <div className="container">
+               <Container>
                   <br />
                   <Personal
                      nextStep={this.nextStep}
                      handleChange={this.handleChange}
                      values={values}
                   />
-               </div>
+               </Container>
             );
          case 2:
             return (
-               <div className="container">
+               <Container>
                   <br />
                   <Location
                      nextStep={this.nextStep}
+                     prevStep={this.prevStep}
                      handleChange={this.handleChange}
                      values={values}
                   />
-               </div>
+               </Container>
+            );
+         case 3:
+            return (
+               <Container>
+                  <br />
+                  <Confirmation
+                     values={values}
+                     nextStep={this.nextStep}
+                     prevStep={this.prevStep}
+                  />
+               </Container>
             );
          default:
             return (
-               <div className="container">
-                  <br />
-                  <Personal
-                     nextStep={this.nextStep}
-                     handleChange={this.handleChange}
-                     values={values}
-                  />
-               </div>
+               <Container>
+                  <Success />
+               </Container>
             );
       }
    }

@@ -2,7 +2,18 @@ import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 class Location extends Component {
+   saveAndContinue = e => {
+      e.preventDefault();
+      this.props.nextStep();
+   };
+
+   back = e => {
+      e.preventDefault();
+      this.props.prevStep();
+   };
+
    render() {
+      const { values, handleChange } = this.props;
       return (
          <Form>
             <FormGroup>
@@ -12,7 +23,8 @@ class Location extends Component {
                   name="city"
                   id="city"
                   placeholder="Enter city"
-                  onChange={this.props.handleChange("city")}
+                  value={values.city}
+                  onChange={handleChange("city")}
                />
             </FormGroup>
             <FormGroup>
@@ -22,10 +34,16 @@ class Location extends Component {
                   name="country"
                   id="country"
                   placeholder="Enter country"
-                  onChange={this.props.handleChange("country")}
+                  value={values.country}
+                  onChange={handleChange("country")}
                />
             </FormGroup>
-            <Button color="success">Save and continue</Button>
+            <Button color="primary" onClick={this.back}>
+               Back
+            </Button>{" "}
+            <Button color="success" onClick={this.saveAndContinue}>
+               Save and continue
+            </Button>
          </Form>
       );
    }

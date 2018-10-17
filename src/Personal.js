@@ -6,7 +6,9 @@ class Personal extends Component {
       e.preventDefault();
       this.props.nextStep();
    };
+
    render() {
+      const { values, handleChange } = this.props;
       return (
          <Form>
             <FormGroup>
@@ -16,7 +18,8 @@ class Personal extends Component {
                   name="name"
                   id="name"
                   placeholder="Enter Full Name"
-                  onChange={this.props.handleChange("name")}
+                  value={values.name}
+                  onChange={handleChange("name")}
                />
             </FormGroup>
             <FormGroup>
@@ -26,10 +29,13 @@ class Personal extends Component {
                   name="email"
                   id="email"
                   placeholder="Enter valid email"
-                  onChange={this.props.handleChange("email")}
+                  value={values.email}
+                  onChange={handleChange("email")}
                />
             </FormGroup>
-            <Button color="success">Save and continue</Button>
+            <Button color="success" onClick={this.saveAndContinue}>
+               Save and continue
+            </Button>
          </Form>
       );
    }
